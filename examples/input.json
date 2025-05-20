@@ -1,0 +1,58 @@
+{
+    "workload": {
+        "id": "deploy-42",
+        "labels": {
+            "region": "us-east",
+            "duration": 3
+        }
+    },
+    "workers": [
+        {
+            "id": "alice",
+            "labels": {
+                "enabled": true,
+                "region": "us-east",
+                "capacity": 8,
+                "load": 2,
+                "tags": [
+                    "fast",
+                    "remote-capable"
+                ]
+            }
+        },
+        {
+            "id": "bob",
+            "labels": {
+                "enabled": true,
+                "region": "us-west",
+                "capacity": 10,
+                "load": 7,
+                "tags": [
+                    "remote-capable"
+                ]
+            }
+        },
+        {
+            "id": "carol",
+            "labels": {
+                "enabled": false,
+                "region": "us-east",
+                "capacity": 6,
+                "load": 1,
+                "tags": []
+            }
+        },
+        {
+            "id": "dan",
+            "labels": {
+                "enabled": true,
+                "region": "eu-central",
+                "capacity": 4,
+                "load": 0,
+                "tags": [
+                    "blacklisted"
+                ]
+            }
+        }
+    ]
+}

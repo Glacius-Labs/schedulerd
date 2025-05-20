@@ -1,0 +1,28 @@
+filters:
+  type: and
+  rules:
+    - type: expression
+      expression: "worker.enabled == true"
+    - type: or
+      rules:
+        - type: expression
+          expression: "worker.region == workload.region"
+        - type: expression
+          expression: "'remote-capable' in worker.tags"
+    - type: not
+      rule:
+        type: expression
+        expression: "'blacklisted' in worker.tags"
+
+scorers:
+  type: weighted
+  weight: 1.0
+  rule:
+    type: avg
+    rules:
+      - type: expression
+        expression: "(worker.capacity - worker.load) / worker.capacity"
+      - type: expression
+        expression: "worker.region == workload.region ? 1.0 : 0.4"
+      - type: expression
+        expression: "'fast' in worker.tags ? 1.0 : 0.6"
