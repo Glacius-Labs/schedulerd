@@ -4,8 +4,6 @@ A stateless, rule-based scheduling engine that assigns workloads to workers base
 
 Built in Go. Powered by [CEL (Common Expression Language)](https://opensource.google/projects/cel). Designed for production.
 
----
-
 ## What It Does
 
 - Accepts a **workload** and a list of **candidate workers**
@@ -13,8 +11,6 @@ Built in Go. Powered by [CEL (Common Expression Language)](https://opensource.go
 - Applies **scoring rules** to rank remaining candidates
 - Returns a ranked list of the best-suited workers
 - Stateless by design — no persistence, no side effects
-
----
 
 ## Example
 
@@ -66,8 +62,6 @@ scorers:
       expression: "worker.location == 'remote' ? 1.0 : 0.0"
 ```
 
----
-
 ## CLI Usage
 
 ```bash
@@ -98,8 +92,6 @@ curl -X POST http://localhost:8080/schedule \
 
 Returns the same ranked list of worker candidates.
 
----
-
 ## 📄 Features (Planned or In Progress)
 
 - [x] CEL-based expression evaluation
@@ -110,8 +102,6 @@ Returns the same ranked list of worker candidates.
 - [ ] Rule trace/debug output
 - [ ] Docker image
 
----
-
 ## Philosophy
 
 - **Stateless**: The engine doesn’t store state — inputs and outputs only.
@@ -119,13 +109,9 @@ Returns the same ranked list of worker candidates.
 - **Extensible**: Add new rules, plugins, or output modes easily.
 - **Safe**: Uses CEL for sandboxed evaluation, no panic risk.
 
----
-
 ## License
 
 [MIT](./LICENSE)
-
----
 
 ## Credits
 
