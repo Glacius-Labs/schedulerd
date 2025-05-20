@@ -115,5 +115,5 @@ Returns the same ranked list of worker candidates.
 
 ## Credits
 
-Built by [Your Name or Organization].  
+Built by [Glacius Labs].  
 Inspired by scheduling systems in Kubernetes, Prometheus, and classical rule engines.
