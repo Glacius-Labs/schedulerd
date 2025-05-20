@@ -80,8 +80,6 @@ schedulerd eval \
 ]
 ```
 
----
-
 ## REST API
 
 ```bash
