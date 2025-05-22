@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log/slog"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -13,7 +14,7 @@ import (
 	"github.com/glacius-labs/schedulerd/internal/rules"
 )
 
-func EvalCmd() *cobra.Command {
+func EvalCmd(logger *slog.Logger) *cobra.Command {
 	var configPath string
 	var inputPath string
 
@@ -21,7 +22,7 @@ func EvalCmd() *cobra.Command {
 		Use:   "eval",
 		Short: "Evaluate a workload against worker candidates using rules",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return runEval(configPath, inputPath)
+			return runEval(configPath, inputPath, logger)
 		},
 	}
 
@@ -33,7 +34,7 @@ func EvalCmd() *cobra.Command {
 	return cmd
 }
 
-func runEval(configPath, inputPath string) error {
+func runEval(configPath, inputPath string, logger *slog.Logger) error {
 	data, err := os.ReadFile(inputPath)
 	if err != nil {
 		return fmt.Errorf("failed to read input file: %w", err)
@@ -52,7 +53,7 @@ func runEval(configPath, inputPath string) error {
 		return fmt.Errorf("failed to load rules: %w", err)
 	}
 
-	scheduler := app.NewScheduler(ruleTrees.FilterTree, ruleTrees.ScoreTree)
+	scheduler := app.NewApp(ruleTrees.FilterTree, ruleTrees.ScoreTree, logger)
 	results, err := scheduler.Evaluate(context.Background(), input.Workload, input.Workers)
 	if err != nil {
 		return fmt.Errorf("evaluation failed: %w", err)

@@ -1,13 +1,13 @@
 package domain
 
 type Workload struct {
-	ID     string                 `json:"id" yaml:"id"`
-	Labels map[string]interface{} `json:"labels" yaml:"labels"`
+	ID     string         `json:"id" yaml:"id"`
+	Labels map[string]any `json:"labels" yaml:"labels"`
 }
 
 type Worker struct {
-	ID     string                 `json:"id" yaml:"id"`
-	Labels map[string]interface{} `json:"labels" yaml:"labels"`
+	ID     string         `json:"id" yaml:"id"`
+	Labels map[string]any `json:"labels" yaml:"labels"`
 }
 
 type AssignmentResult struct {
